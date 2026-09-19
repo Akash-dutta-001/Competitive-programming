@@ -1,29 +1,38 @@
+// C program to find height of a binary tree
 #include <stdio.h>
 #include <stdlib.h>
 
+// Create a node
 struct Node {
     int data;
     struct Node *left;
     struct Node *right;
 };
 
-// Find height of tree
+// Find height of the tree
 int height(struct Node *root) {
+
+    // If tree is empty
     if (root == NULL)
         return 0;
 
-    int leftHeight = height(root->left);
-    int rightHeight = height(root->right);
+    // Find height of left subtree
+    int left = height(root->left);
 
-    if (leftHeight > rightHeight)
-        return leftHeight + 1;
+    // Find height of right subtree
+    int right = height(root->right);
+
+    // Return the greater height + 1
+    if (left > right)
+        return left + 1;
     else
-        return rightHeight + 1;
+        return right + 1;
 }
 
 // Create a new node
 struct Node* newNode(int data) {
-    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+
+    struct Node *node = malloc(sizeof(struct Node));
 
     node->data = data;
     node->left = NULL;
@@ -33,14 +42,19 @@ struct Node* newNode(int data) {
 }
 
 int main() {
+
+    // Create root node
     struct Node *root = newNode(1);
 
+    // Create child nodes
     root->left = newNode(2);
     root->right = newNode(3);
 
+    // Create nodes under 2
     root->left->left = newNode(4);
     root->left->right = newNode(5);
 
+    // Display height
     printf("Height of tree = %d\n", height(root));
 
     return 0;

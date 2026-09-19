@@ -7,18 +7,21 @@ int main()
     int hashTable[SIZE];
     int key, index, i;
 
-    // Initialize hash table
+    // Initialize hash table with -1
     for (i = 0; i < SIZE; i++)
         hashTable[i] = -1;
 
-    // Insert elements
+    // Insert 5 numbers
     printf("Enter 5 numbers:\n");
 
     for (i = 0; i < 5; i++)
     {
         scanf("%d", &key);
 
+        // Calculate index using hash function
         index = key % SIZE;
+
+        // Store key at calculated index
         hashTable[index] = key;
     }
 
